@@ -1,0 +1,65 @@
+/* Estilos para el bloque principal 'header' */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Estilos para el elemento 'logo' dentro del bloque 'header' */
+.header__logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 3em;
+    font-style: italic;
+    font-weight: bolder;
+    color: #23012f;
+    -webkit-text-stroke: 2px #12fcff;
+    text-shadow: 
+        0 0 2px #00d5ff,
+        0 0 5px #00d5ff,
+        0 0 7px #00d5ff,
+        0 0 10px #00d5ff,
+        0 0 12px #00d5ff,
+        0 0 15px #00d5ff,
+        0 0 17px #00d5ff;
+}
+
+/* Estilos para el elemento 'buttons' dentro del bloque 'header' */
+.header__buttons {
+    display: flex;
+}
+
+/* Estilos para el elemento 'button' dentro del bloque 'header__buttons' */
+.header__buttons .button {
+    font-family: 'Inter', sans-serif;
+    margin-left: 1em;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    border: 2px solid #12fcff;
+    color: #ccc;
+    background: linear-gradient(#540071, #23012f);
+    cursor: pointer;
+    box-shadow: 
+        0 0 5px #00d5ff,
+        0 0 10px #00d5ff,
+        inset 0 0 5px #00d5ff,
+        inset 0 0 10px #00d5ff;
+    transition: border 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+}
+
+/* Estilos para el elemento 'button' cuando se encuentra dentro de un contexto móvil */
+@media screen and (max-width: 768px) {
+    .header__buttons .button {
+        font-size: 1em;
+        padding: 0.4em 0.4em;
+    }
+    .header__logo {
+        font-size: 2.2em;
+    }
+}

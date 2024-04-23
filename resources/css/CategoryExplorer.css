@@ -1,0 +1,108 @@
+.results__categories {
+    box-sizing: border-box;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-radius: 0.5em;
+    border: 2px solid #00d5ff;
+    box-shadow: 
+        0 0 1px #00d5ff,
+        0 0 3px #00d5ff,
+        inset 0 0 1px #00d5ff,
+        inset 0 0 3px #00d5ff;
+    transition: border 0.3s, box-shadow 0.3s;
+    color: #ccc;
+    overflow: scroll;
+    list-style: none;
+    gap: 1em;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 1em; 
+    border: 2px solid #12fcff;
+    box-shadow: 
+        0 0 1px #00d5ff,
+        0 0 3px #00d5ff,
+        inset 0 0 1px #00d5ff,
+        inset 0 0 3px #00d5ff;
+    border-radius: 0.5em;
+    margin-top: 10px;
+    padding: 20px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.form__search-input {
+    height: max-content;
+    width: 100%;
+    max-width: 30em;
+    padding: 0.5em;
+    border: 4px solid #12fcff;
+    border-radius: 0.25em;
+    background: linear-gradient(#2c003b, #23012f);
+    cursor: pointer;
+    border-color: #12fcff;
+    box-shadow: 
+        0 0 5px #00d5ff,
+        0 0 10px #00d5ff,
+        inset 0 0 5px #00d5ff,
+        inset 0 0 10px #00d5ff;
+    transition: border 0.3s, box-shadow 0.3s;
+    color: #ccc;
+    font-size: 1em;
+}
+
+.category__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category__img {
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    transition: 0.4s; 
+    margin-top: 10px;
+}
+
+.category__img:hover {
+    transform: scale(1.04);
+    border-radius: 0.25em;
+    border: 4px solid #12fcff;
+    box-shadow: 
+        0 0 10px #00d5ff,
+        0 0 20px #00d5ff,
+        inset 0 0 10px #00d5ff,
+        inset 0 0 20px #00d5ff;
+}
+
+.category__name {
+    color: #ffffff;
+    font-size: 1.3em;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+    .results__categories {
+        grid-template-columns: 1fr 1fr;
+        max-height: 100%;
+    }
+    .category__container {
+        width: auto;
+        max-width: 20em;
+    }
+    .category__img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        border: 2px solid #12fcff;
+        border-radius: 2px;
+        transition: 0.3s; 
+        margin-top: 10px;
+    }
+}
