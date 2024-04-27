@@ -22,9 +22,9 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=> Hash::make($request->password)
         ]);
+        $user->save();
 
         $token = $user->createToken('authToken')->plainTextToken;
-
         return response()->json(['message'=> 'Usuario registrado', 'token' => $token],200);
     }
     public function login(Request $request) {

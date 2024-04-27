@@ -30,7 +30,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request->password); // Hashea la contraseña antes de guardarla
             $user->save();
 
-            // Devuelve el usuario creado con un código de estado 201
+            // Dev  uelve el usuario creado con un código de estado 201
             return response()->json($user, 201);
         } catch (\Exception $e) {
             // Loguear el error sería una buena práctica para debuggear si algo sale mal

@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/spotify/search', [SpotifyController::class, 'search']);
+
+Route::get('/{any}', function () {
+    return view('welcome'); // Asegúrate de que 'welcome' es la vista que contiene tu app Vue
+})->where('any', '.*');

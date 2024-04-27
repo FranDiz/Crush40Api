@@ -1,7 +1,4 @@
 <template>
-  <header>
-      <Header/>
-  </header>
   <main>
     <aside>
       <Dashboard/>

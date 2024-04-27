@@ -4,12 +4,10 @@
     <ul class="dashboard__links">
       <router-link to="/" class="dashboard__link">Inicio</router-link>
       <router-link to="/categories" class="dashboard__link">Explorar por categorías</router-link>
+      <router-link to="/playlists" class="dashboard__link">Playlists</router-link>
       <router-link to="/contact" class="dashboard__link">Contacto</router-link>
       <router-link to="/about" class="dashboard__link">¿Qué es Crush40?</router-link>
     </ul> 
-    <form @submit.prevent>
-      <input class="dashboard__input-playlist" type="text" placeholder="Search" />
-    </form>
   </nav>
 </template>
 

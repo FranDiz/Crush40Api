@@ -48,11 +48,6 @@ return [
 
     'expiration' => null,
 
-    'paths' =>[
-        'api/*',
-        'login',
-        'logout'
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -86,4 +81,10 @@ return [
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
     ],
 
+    
+    'paths' =>[
+        'api/*',
+        'login',
+        'logout'
+    ],
 ];

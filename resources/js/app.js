@@ -1,6 +1,6 @@
 import './bootstrap';
 import {createApp} from 'vue';
 import router from "./router"
-import LandingPage from '../views/LandingPage.vue';
+import App from '../views/App.vue'
 
-createApp(LandingPage).use(router).mount("#app");
+createApp(App).use(router).mount("#app");

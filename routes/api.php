@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpotifyController;
@@ -26,6 +27,7 @@ Route::get('/saludo', function () {
     return response()->json(['mensaje' => 'Hola Mundo']);
 });
 Route::post('/storePlaylist',[ApiController::class, 'store']);
+Route::post('/storeUser',[UsersController::class,'storeUser']);
 
 
 //Rutas de autenticación

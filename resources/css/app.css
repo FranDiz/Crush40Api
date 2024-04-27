@@ -38,6 +38,7 @@ body{
       display: flex;
       flex-direction: row;
       height: 100vh; /* Ocupar toda la altura visible */
+      justify-content: center;
     }
     
     aside {
@@ -54,6 +55,10 @@ body{
   @media (max-width: 768px) {
       main {
         flex-direction: column; /* Cambiar la orientación en pantallas pequeñas */
+        display: flex;
+        flex-direction: row;
+        height: 100vh; /* Ocupar toda la altura visible */
+        justify-content: center;
       }
     
       aside {
