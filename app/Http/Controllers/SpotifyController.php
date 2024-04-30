@@ -38,4 +38,20 @@ class SpotifyController extends Controller
     
         return $response->json();  // Devuelve la respuesta JSON directamente al cliente
     }
+
+    public function getAlbumTracks(Request $request){
+
+        $this->authenticate(); // Asegura que tengamos un token
+        $albumId = $request->input('albumId');
+
+        if (!$albumId) { // Verifica si 'albumId' está vacío y retorna un error antes de llamar a Spotify
+        return response()->json(['error' => ['message' => 'No album ID provided', 'status' => 400]], 400);
+        }
+
+        $response = Http::withHeaders([
+        'Authorization' => "Bearer {$this->token}",
+            ])->get("https://api.spotify.com/v1/albums/{$albumId}");
+
+        return $response->json(); // Devuelve la respuesta JSON directamente al cliente
+}
 }

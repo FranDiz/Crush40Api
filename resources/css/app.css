@@ -15,6 +15,9 @@ body{
   span{
     font-family: 'Inter', sans-serif;
   }
+  *{
+    color: #ccc;
+  }
     
     button {
       font-family: 'Inter', sans-serif;
@@ -41,13 +44,13 @@ body{
       justify-content: center;
     }
     
-    aside {
-      width: 30%; /* Dashboard toma el 30% del ancho */
-      min-width: 240px; /* Mínimo ancho del Dashboard */
-    }
+.sidebar {
+    width: 30%; /* Dashboard toma el 30% del ancho */
+    min-width: 240px; /* Mínimo ancho del Dashboard */
+}
     
-    section {
-      width: 70%; /* SearchComponent toma el resto, el 70% */
+.content-area {
+    width: 70%; /* SearchComponent toma el resto, el 70% */
       overflow: auto; /* Permite scroll si el contenido excede la altura */
     }
   
@@ -56,17 +59,16 @@ body{
       main {
         flex-direction: column; /* Cambiar la orientación en pantallas pequeñas */
         display: flex;
-        flex-direction: row;
         height: 100vh; /* Ocupar toda la altura visible */
         justify-content: center;
       }
     
-      aside {
+      .sidebar {
         width: 100%; /* Dashboard ocupa toda la anchura */
         min-width: 0; /* Elimina el ancho mínimo */
       }
     
-      section {
+      .content-area {
         width: 100%; /* SearchComponent también ocupa toda la anchura */
       }
     }

@@ -33,7 +33,7 @@ export default {
     },
     computed: {
         isFormValid() {
-            return !this.nameError && !this.passwordError && !this.emailError && this.name && this.password && this.email; // Update the condition to include checking if the form fields are empty
+            return !!this.passwordError && !this.emailError &&  this.password && this.email; // Update the condition to include checking if the form fields are empty
         }
     },
     methods: {

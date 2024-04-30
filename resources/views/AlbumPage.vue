@@ -4,21 +4,28 @@
             <Dashboard/>
         </aside>
         <section class="content-area">
-            <CategoryExplorer/>
+          <AlbumSongs :albumId="albumId" />
         </section>
     </main>
 </template>
 
 <script>
+import Header from '../components/Header.vue';
+import AlbumSongs from '../components/AlbumSongs.vue';
 import Dashboard from '../components/Dashboard.vue';
-import CategoryExplorer from '../components/CategoryExplorer.vue';
+
 export default {
-    components: { Dashboard, CategoryExplorer }
-    }
+  components: {Header, AlbumSongs, Dashboard},
+  data() {
+    return {
+      albumId: this.$route.params.id
+    };
+  }
+  
+};
 </script>
 
 <style scoped>
 
 
 </style>
-

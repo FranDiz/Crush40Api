@@ -23,7 +23,7 @@
         <span class="search-results__title">{{ result.name }}</span>
       </template>
       <template v-else-if="searchType === 'album' && result.images && result.images.length > 0">
-        <router-link :to="`/product/${result.id}`" class="search-results__link">
+        <router-link :to="`/album/${result.id}`" class="search-results__link">
           <img :src="result.images[0].url" alt="Portada del álbum" class="search-results__image" />
         </router-link>
         <span class="search-results__title">{{ result.name }} de {{ result.artists[0].name }}</span>
