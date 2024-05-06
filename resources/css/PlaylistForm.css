@@ -1,0 +1,70 @@
+.playlist-form{
+    height: auto;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: baseline;
+    gap: 1em;
+    width: 100%;
+    border: 2px solid #12fcff;
+    border-radius: 0.5em;
+    box-shadow: 
+        0 0 1px #12fcff,
+        0 0 3px #12fcff,
+        inset 0 0 1px #12fcff,
+        inset 0 0 3px #12fcff;
+    background-color: #170528;
+    margin-top: 10px;
+    padding: 20px;
+}
+.playlist-label{
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3em;
+}
+.playlist-input{
+    width: 80%;
+    padding: 10px;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    border: 2px solid #12fcff;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #ffffff;
+}
+.playlist-separator{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+.playlist-title{
+    position: relative;
+    font-size: 2em;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+.playlist-submit{
+    font-family: 'Inter', sans-serif;
+    padding: 1em 2em;
+    border-radius: 0.25em;
+    border: 2px solid #12fcff;
+    color: #ccc;
+    background: linear-gradient(#540071, #23012f);
+    cursor: pointer;
+    box-shadow: 
+        0 0 5px #00d5ff,
+        0 0 10px #00d5ff,
+        inset 0 0 5px #00d5ff,
+        inset 0 0 10px #00d5ff;
+    transition: border 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    font-size: 1em;
+}

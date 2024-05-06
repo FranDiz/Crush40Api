@@ -54,4 +54,31 @@ class SpotifyController extends Controller
 
         return $response->json(); // Devuelve la respuesta JSON directamente al cliente
 }
+public function getSong(Request $request){
+    $this->authenticate(); // Asegúrate de que el usuario esté autenticado
+
+    $songId = $request->input('songId');
+    if (!$songId) { // Verifica si 'songId' está vacío y retorna un error antes de llamar a Spotify
+        return response()->json(['error' => ['message' => 'No song ID provided', 'status' => 400]], 400);
+    }
+
+    // Realizar la llamada a la API de Spotify para obtener los detalles de la canción
+    $response = Http::withHeaders([
+        'Authorization' => "Bearer {$this->token}",
+    ])->get("https://api.spotify.com/v1/tracks/{$songId}");
+
+    // Verificar si la respuesta de Spotify fue exitosa
+    if ($response->successful()) {
+        return $response->json(); // Devuelve la respuesta JSON directamente al cliente
+    } else {
+        // Manejo de errores si Spotify no devuelve una respuesta exitosa
+        return response()->json([
+            'error' => [
+                'message' => 'Failed to retrieve the song from Spotify',
+                'status' => $response->status()
+            ]
+        ], $response->status());
+    }
+}
+
 }

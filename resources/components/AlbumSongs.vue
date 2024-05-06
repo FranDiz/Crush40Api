@@ -8,7 +8,7 @@
       <li v-for="item in product.tracks.items" :key="item.id" class="album__item">
         {{ item.name }} - {{ songDuration(item.duration_ms) }}
         <nav  >
-          <button>+ Favoritos</button>
+          <button @click="addFavorites(item.id)">+ Favoritos</button>
             <button>+ Playlist</button>
         </nav>
       </li>
@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios';  
+import { mapState } from 'vuex';
 import '../css/AlbumSongs.css'
 
 export default {
@@ -33,12 +34,14 @@ export default {
 
   data() {
     return {
-      product: null,
-      token: ''
+      product: null
     };
   },
 
   computed: {
+    ...mapState({
+      userId: state => state.user.data.id  // Asumiendo que el ID del usuario está en state.user.data.id
+    }),
     songDuration() {
       return function(duration_ms) {
         if (typeof duration_ms !== 'number') return '';
@@ -62,15 +65,21 @@ export default {
         }
       }).then(response => {
         this.product = response.data;
-        console.log(response.data);
       }).catch(error => {
         console.error('Error fetching album tracks:', error);
+      });
+    },
+
+    addFavorites(trackId) {
+      axios.post('/api/favorites/addFavorite', {
+        userId: this.userId,  // Usando el ID del usuario desde la store
+        favoriteId: trackId   // El ID de la pista que se va a favoritos
+      }).then(response => {
+        console.log('Favorite added!', response.data);
+      }).catch(error => {
+        console.error('Error adding favorite:', error);
       });
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

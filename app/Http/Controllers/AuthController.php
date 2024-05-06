@@ -49,6 +49,7 @@ class AuthController extends Controller
             return response()->json([
                 'name'=>$user->name,
                 'email'=>$user->email,
+                'id'=>$user->id
             ]);
         }else{
             return response()->json(['message'=>'Usuario no autenticado'],404);

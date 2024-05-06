@@ -17,6 +17,8 @@ body{
   }
   *{
     color: #ccc;
+    font-family: 'Inter', sans-serif;
+    
   }
     
     button {
