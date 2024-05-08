@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Playlists extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['title', 'description', 'user_id'];
+
 
     public function author(){
         return $this->belongsTo(User::class, 'users_id');
@@ -17,7 +20,8 @@ class Playlists extends Model
         return $this->hasMany(Comentarios::class);
     }
     
-    public function canciones(){
-        return $this->belongsToMany(Canciones::class, 'canciones_playlists', 'playlist_id', 'spotify_id');
+    public function canciones()
+    {
+        return $this->belongsToMany(Canciones::class, 'playlist_cancion', 'playlist_id', 'cancion_id');
     }
 }

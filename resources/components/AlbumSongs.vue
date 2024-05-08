@@ -55,6 +55,7 @@ export default {
 
   mounted() {
     this.getSongs();
+    this.saveSongs();
   },
 
   methods: {
@@ -69,7 +70,16 @@ export default {
         console.error('Error fetching album tracks:', error);
       });
     },
-
+    
+    saveSongs() {
+  axios.post('/api/spotify/saveAlbumTracks', {
+    albumId: this.albumId  // Usar data en lugar de params para enviar datos en POST
+  }).then(response => {
+    console.log('Tracks saved to database:', response.data);
+  }).catch(error => {
+    console.error('Error saving tracks:', error);
+  });
+},
     addFavorites(trackId) {
       axios.post('/api/favorites/addFavorite', {
         userId: this.userId,  // Usando el ID del usuario desde la store

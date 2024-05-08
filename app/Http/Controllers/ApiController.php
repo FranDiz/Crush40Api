@@ -58,26 +58,48 @@ class ApiController extends Controller
     }
     public function addSongToPlaylist(Request $request)
     {
-        $validated = $request->validate([
-            'playlistId' => 'required|exists:playlists,id',
-            'spotifyId' => 'required|string|max:255'
-        ]);
+    $playlistId = $request->input('playlistId');
+    $cancionId = $request->input('cancionId');
 
-        // Crear o encontrar la canción por su Spotify ID
-        $cancion = Canciones::firstOrCreate([
-            'spotify_id' => $validated['spotifyId']
-        ]);
-
-        // Encontrar la playlist y asociar la canción
-        $playlist = Playlists::find($validated['playlistId']);
-        if (!$playlist) {
-            return response()->json(['message' => 'Playlist no encontrada'], 404);
-        }
-
-        // Asociar la canción con la playlist evitando duplicados
-        $playlist->canciones()->syncWithoutDetaching($cancion->id);
-
-        return response()->json(['message' => 'Canción añadida a la playlist correctamente']);
+    $playlist = Playlists::find($playlistId);
+    if (!$playlist) {
+        return response()->json(['message' => 'Playlist not found'], 404);
     }
-    
+
+    $playlist->canciones()->attach($cancionId);
+
+    return response()->json(['message' => 'Cancion added to playlist']);
+    }
+
+    public function getPlaylistSongs(Request $request){
+            $playlistId = $request->input('playlistId');
+            $playlist = Playlists::with('canciones')->find($playlistId);
+        if (!$playlist) {
+            return response()->json(['message' => 'Playlist not found'], 404);
+        }
+        return response()->json($playlist->canciones);
+    }
+
+
+    public function removeSongFromPlaylist(Request $request, )
+{
+    $playlistId = $request->input('playlistId');
+    $cancionId = $request->input('cancionId');
+
+    // Buscar la playlist por su ID
+    $playlist = Playlists::find($playlistId);
+
+    // Verificar si la playlist existe
+    if (!$playlist) {
+        // Si la playlist no se encuentra, retornar un error 404
+        return response()->json(['message' => 'Playlist not found'], 404);
+    }
+
+    // Eliminar la canción específica de la playlist
+    $playlist->canciones()->detach($cancionId);
+
+    // Retornar una respuesta confirmando que la canción fue eliminada
+    return response()->json(['message' => 'Cancion removed from playlist']);
+}
+
 }

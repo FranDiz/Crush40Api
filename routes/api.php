@@ -21,14 +21,16 @@ use App\Http\Controllers\SpotifyController;
 Route::get('/spotify/authenticate', [SpotifyController::class, 'authenticate']);
 Route::get('/spotify/search', [SpotifyController::class, 'search']);
 Route::get('/spotify/getAlbumTracks',[SpotifyController::class, 'getAlbumTracks']);
+Route::post('/spotify/saveAlbumTracks',[SpotifyController::class, 'saveAlbumTracks']);
 Route::get('/spotify/getSong',[SpotifyController::class, 'getSong']);
+
 
 Route::get('/favorites/getUserFavorites', [FavoritesController::class, 'getUserFavorites']);
 Route::post('/favorites/addFavorite', [FavoritesController::class, 'addFavorite']);
 Route::delete('/favorites/deleteFavorite', [FavoritesController::class, 'deleteFavorite']);
 
 
-Route::post('/addSongToPlaylist',[ApiController::class, 'addSongToPlaylist']);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -40,6 +42,9 @@ Route::get('/saludo', function () {
 Route::post('/createPlaylist',[ApiController::class, 'createPlaylist']);
 Route::post('/storeUser',[UsersController::class,'storeUser']);
 Route::get('/getPlaylists', [ApiController::class, 'getPlaylists']);
+Route::get('/getPlaylistSongs',[ApiController::class, 'getPlaylistSongs']);
+Route::post('/addSongToPlaylist',[ApiController::class, 'addSongToPlaylist']);
+Route::delete('/removeSongFromPlaylist',[ApiController::class, 'removeSongFromPlaylist']);
 
 //Rutas de autenticación
 Route::middleware(['auth:sanctum'])->group(function(){

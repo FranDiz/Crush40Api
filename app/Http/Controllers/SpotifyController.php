@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Canciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -54,13 +55,54 @@ class SpotifyController extends Controller
 
         return $response->json(); // Devuelve la respuesta JSON directamente al cliente
 }
-public function getSong(Request $request){
+
+public function saveAlbumTracks(Request $request)
+{
+    $this->authenticate(); // Asegura que tengamos un token
+    $albumId = $request->input('albumId');
+
+    if (!$albumId) { // Verifica si 'albumId' está vacío y retorna un error antes de llamar a Spotify
+        return response()->json(['error' => ['message' => 'No album ID provided', 'status' => 400]], 400);
+    }
+
+    // Obtener tracks del álbum
+    $response = Http::withHeaders([
+        'Authorization' => "Bearer {$this->token}",
+    ])->get("https://api.spotify.com/v1/albums/{$albumId}/tracks");
+
+    if ($response->successful()) {
+        $tracksData = $response->json();
+
+        // Guardar cada spotify_id de las canciones en la base de datos
+        foreach ($tracksData['items'] as $track) {
+            Canciones::firstOrCreate([
+                'spotify_id' => $track['id']
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Tracks retrieved and saved successfully',
+            'tracks' => $tracksData['items']
+        ]);
+    } else {
+        return response()->json([
+            'error' => [
+                'message' => 'Failed to retrieve album tracks from Spotify',
+                'status' => $response->status()
+            ]
+        ], $response->status());
+    }
+}
+
+
+public function getSong(Request $request)
+{
     $this->authenticate(); // Asegúrate de que el usuario esté autenticado
 
     $songId = $request->input('songId');
     if (!$songId) { // Verifica si 'songId' está vacío y retorna un error antes de llamar a Spotify
         return response()->json(['error' => ['message' => 'No song ID provided', 'status' => 400]], 400);
-    }
+    }   
 
     // Realizar la llamada a la API de Spotify para obtener los detalles de la canción
     $response = Http::withHeaders([
@@ -69,16 +111,22 @@ public function getSong(Request $request){
 
     // Verificar si la respuesta de Spotify fue exitosa
     if ($response->successful()) {
-        return $response->json(); // Devuelve la respuesta JSON directamente al cliente
+        $data = $response->json();
+
+        // Guardar el spotify_id en la base de datos
+        Canciones::firstOrCreate([
+            'spotify_id' => $data['id']
+        ]);
+
+        return $data; // Devuelve la respuesta JSON directamente al cliente
     } else {
         // Manejo de errores si Spotify no devuelve una respuesta exitosa
         return response()->json([
             'error' => [
                 'message' => 'Failed to retrieve the song from Spotify',
-                'status' => $response->status()
+            'status' => $response->status()
             ]
         ], $response->status());
     }
 }
-
 }
