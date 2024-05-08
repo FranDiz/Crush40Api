@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('canciones_playlists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('playlists_id')->references('id')->on('playlists')->onDelete('cascade');
-            $table->foreignId('canciones_id')->references('id')->on('canciones')->onDelete('cascade');
+            $table->foreignId('playlist_id')->constrained()->onDelete('cascade'); 
+            $table->string('spotify_id');
+            $table->foreign('spotify_id')->references('spotify_id')->on('canciones')->onDelete('cascade'); 
             $table->timestamps();
 
-            $table->unique(['playlists_id', 'canciones_id']);
+            $table->unique(['playlist_id', 'spotify_id']); 
         });
     }
 

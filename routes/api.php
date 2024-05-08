@@ -27,6 +27,10 @@ Route::get('/favorites/getUserFavorites', [FavoritesController::class, 'getUserF
 Route::post('/favorites/addFavorite', [FavoritesController::class, 'addFavorite']);
 Route::delete('/favorites/deleteFavorite', [FavoritesController::class, 'deleteFavorite']);
 
+
+Route::post('/addSongToPlaylist',[ApiController::class, 'addSongToPlaylist']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
