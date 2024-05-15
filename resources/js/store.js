@@ -31,6 +31,7 @@ const store = createStore({
         .then(response => {
           commit('setLoggedIn', true);
           commit('setUser', response.data);
+          console.log('User data:', response.data);
         })
         .catch(() => {
           localStorage.removeItem('token');  // En caso de error, eliminar el token si no es válido

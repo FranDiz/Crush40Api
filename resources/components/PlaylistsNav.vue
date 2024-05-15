@@ -13,11 +13,13 @@
   <div class="playlists-container">
     <h2 class="playlists-title">Playlists</h2>
     <ul class="search-results">
-      <li v-for="playlist in playlists" :key="playlist.id" class="search-results__item" @click="goToPlaylist(playlist.id)">
+      <li v-for="playlist in playlists" :key="playlist.id" class="search-results__item">
+        <router-link :to="`/playlist/${playlist.id}`" class="search-results__link">
         <div class="playlist-info">
           <div class="search-results__title">{{ playlist.title }}</div>
           <div>{{ playlist.description || 'Sin descripción' }}</div>
         </div>
+      </router-link>
       </li>
     </ul>
     <div v-if="playlists.length === 0">
@@ -107,8 +109,6 @@ export default {
   }
 }
 </script>
-
-
 <style scoped>
 .playlists-container {
   align-items: baseline;
@@ -126,19 +126,16 @@ export default {
   color: #ccc;
   overflow: hidden;
 }
-
 .playlists-title {
   color: #ffffff;
   margin-bottom: 20px;
 } 
-
 .search-results {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1em;
   list-style: none;
 }
-
 .search-results__item {
   text-align: center;
   padding: 10px;

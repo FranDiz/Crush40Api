@@ -14,8 +14,8 @@ const routes = [
     {path: '/register', component: RegisterPage},
     {path: '/login', name:'Login', component: LoginPage},
     {path:'/profile', name:'Profile', component: ProfilePage, meta: {requiredAuth: true}},
-    {path:'/playlists', name:'Playlists', component: PlaylistsPage},
-    {path: '/playlist/:id', name:'Playlist', component: PlaylistPage}
+    {path:'/playlists', name:'Playlists', component: PlaylistsPage, props: true},
+    {path: '/playlist/:id', component: PlaylistPage, props: true},
 ]
 const router = createRouter({
     history: createWebHistory(),

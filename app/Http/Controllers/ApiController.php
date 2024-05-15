@@ -7,9 +7,23 @@ use App\Models\Canciones;
 use App\Models\User; 
 use App\Models\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ApiController extends Controller
 {
+    private $token;
+    public function authenticate()
+    {
+        $response = Http::asForm()->post('https://accounts.spotify.com/api/token', [
+            'grant_type' => 'client_credentials',
+            'client_id' => env('SPOTIFY_CLIENT_ID'),
+            'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
+        ]);
+
+        $this->token = $response['access_token'];
+    }
+
+
     public function createPlaylist(Request $request)
     {
         try {
@@ -43,11 +57,12 @@ class ApiController extends Controller
             return response()->json(['error' => 'Error en el servidor: ' . $e->getMessage()], 500);
         }
     }
-    public function getPlaylistDetails(Request $request, $id)
+    public function getPlaylistDetails(Request $request)
     {
+        $playlistId = $request->input('playlistId');
         try {
             // Busca la playlist por ID. Si no la encuentra, retorna un error 404.
-            $playlist = Playlists::findOrFail($id);
+            $playlist = Playlists::findOrFail($playlistId);
     
             // Si la playlist es encontrada, devuelve los detalles de la playlist con un código de estado 200 (OK)
             return response()->json($playlist, 200);

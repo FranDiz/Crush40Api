@@ -1,23 +1,25 @@
 <template>
     <form class="form___register" @submit.prevent="login" :disabled="!isFormValid">
         <div class="form___head">
-            <h2 class="form___title">Entrar en Crush40</h2>
-            <router-link to="/" class="button">Volver</router-link>
+            <h2 class="form___title">Entrar a Crush40</h2>
         </div>
 
-        <label for="email" class="form___label" >Correo electrónico:</label>
+        <label for="email" class="form___label">Correo electrónico:</label>
         <input type="email" id="email" v-model="email" @blur="validateEmail" required class="form___input">
         <span v-if="emailError" class="error-message">Formato de correo electrónico inválido</span>
 
         <label for="password" class="form___label">Contraseña:</label>
         <input type="password" id="password" v-model="password" @blur="validatePassword" required class="form___input">
         <span v-if="passwordError" class="error-message">La contraseña debe tener al menos 8 caracteres</span>
+        <button type="submit" class="form___submit">Entrar</button>
+        
 
-
-
-        <button type="submit" class="form___submit" >Entrar</button>
+        <div class="form___links">
+            <a href="#" class="form___link">¿Eres nuevo? Registrate ahora</a>
+        </div>
     </form>
 </template>
+
 
 <script>
 import '../css/Form.css';
@@ -66,6 +68,6 @@ export default {
 
 <style scoped>
 .error-message {
-    color: red;
+    color: rgb(255, 0, 0);
 }
 </style>

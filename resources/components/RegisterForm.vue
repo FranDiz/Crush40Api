@@ -2,14 +2,11 @@
     <form class="form___register" @submit.prevent="register" :disabled="!isFormValid">
         <div class="form___head">
             <h2 class="form___title">Registrarse en Crush40</h2>
-            <router-link to="/" class="button">Volver</router-link>
         </div>
 
-        <div class="form___separator">
-            <label for="name" class="form___label">Nombre:</label>
-            <input type="text" id="name" v-model="name" @blur="validateName" required class="form___input">
-            <span v-if="nameError" class="error-message">El nombre solo debe contener letras</span>
-        </div>
+        <label for="name" class="form___label">Nombre:</label>
+        <input type="text" id="name" v-model="name" @blur="validateName" required class="form___input">
+        <span v-if="nameError" class="error-message">El nombre solo debe contener letras</span>
 
         <label for="email" class="form___label" >Correo electrónico:</label>
         <input type="email" id="email" v-model="email" @blur="validateEmail" required class="form___input">

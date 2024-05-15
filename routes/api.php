@@ -43,6 +43,7 @@ Route::post('/createPlaylist',[ApiController::class, 'createPlaylist']);
 Route::post('/storeUser',[UsersController::class,'storeUser']);
 Route::get('/getPlaylists', [ApiController::class, 'getPlaylists']);
 Route::get('/getPlaylistSongs',[ApiController::class, 'getPlaylistSongs']);
+Route::get('/getPlaylistDetails',[ApiController::class, 'getPlaylistDetails']);
 Route::post('/addSongToPlaylist',[ApiController::class, 'addSongToPlaylist']);
 Route::delete('/removeSongFromPlaylist',[ApiController::class, 'removeSongFromPlaylist']);
 

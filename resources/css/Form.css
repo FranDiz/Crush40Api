@@ -1,74 +1,72 @@
-.form___register{
-    height: 80vh;
-    color: #f5f5f5;
-    display: flex;
+.form___register {
+    display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1em; 
-    width: 50%;
-    border: 2px solid #12fcff;
-    border-radius: 0.5em;
-    box-shadow: 
-        0 0 1px #12fcff,
-        0 0 3px #12fcff,
-        inset 0 0 1px #12fcff,
-        inset 0 0 3px #12fcff;
-    background-color: #170528;
-    margin-top: 10px;
+    width: 360px;
     padding: 20px;
+    margin: 50px auto;
+    border: 2px solid #12fcff; /* Cian claro para el borde */
+    border-radius: 6px;
+    background-color: #170528; /* Fondo oscuro */
+    color: #f5f5f5; /* Texto claro para mejorar la legibilidad */
 }
-.form___label{
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.3em;
-}
-.form___input{
-    width: 40%;
-    padding: 5px;
-    font-size: 1em;
-    font-family: 'Inter', sans-serif;
-    font-style: italic;
-    border: 2px solid #12fcff;
-    border-radius: 10px;
-    background-color: #12fbff00;
-    color: #ffffff;
-}
-.form___separator{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    align-items: center;
-    justify-content: center;
-    gap: 1em; 
-    width: 100%;
 
-}
-.form___title{
-    position: relative;
-    top: -5%;
-    font-size: 2em;
-    color: #ffffff;
+.form___head, .form___links {
     text-align: center;
     margin-bottom: 20px;
-    font-family: 'Inter', sans-serif;
-
 }
-.form___submit{
-    font-family: 'Inter', sans-serif;
-    margin-left: 1em;
-    padding: 1em 2em;  /* Aumentado de 0.5em 1em a 1em 2em */
-    border-radius: 0.25em;
-    border: 2px solid #12fcff;
-    color: #ccc;
-    background: linear-gradient(#540071, #23012f);
+
+.form___title {
+    margin-bottom: 30px;
+    color: #f5f5f5; /* Texto claro */
+}
+
+.form___label {
+    display: block;
+    margin: 20px 0 5px; /* Ajustado para mayor espacio */
+    color: #f5f5f5; /* Texto claro */
+}
+
+.form___input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #12fcff; /* Borde cian claro */
+    border-radius: 6px;
+    background-color: transparent; /* Fondo transparente para un estilo elegante */
+    color: #f5f5f5; /* Texto claro */
+}
+
+.form___submit {
+    width: 80%;
+    padding: 8px 10px;
+    background-color: #2cbe4e; /* Botón verde vibrante */
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    box-shadow: 
-        0 0 5px #00d5ff,
-        0 0 10px #00d5ff,
-        inset 0 0 5px #00d5ff,
-        inset 0 0 10px #00d5ff;
-    transition: border 0.3s, box-shadow 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
+.form___link, .form___secondary {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+    color: #ffffff; /* Enlaces en cian claro */
+    background: none;
+    border: none;
     text-decoration: none;
-    font-size: 1em;  /* El tamaño de la fuente se mantiene igual */
+}
+
+.form___secondary {
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #f5f5f5; /* Texto claro */
+    border: 1px solid #12fcff; /* Borde cian claro */
+    border-radius: 6px;
+}
+
+.error-message {
+    color: #ff6161; /* Rojo para errores */
+    font-size: 0.85em;
+    text-align: center;
 }

@@ -18,7 +18,7 @@ export default {
   name: 'Dashboard',
   data() {
     return {
-      showDashboard: true, // Se muestra por defecto
+      showDashboard: false, // Comenzar oculto
     };
   },
   methods: {
@@ -26,21 +26,19 @@ export default {
       this.showDashboard = !this.showDashboard; // Cambia la visibilidad al hacer clic
     },
     checkWidth() {
-      // Esto ahora asegura que el Dashboard siempre se muestre
-      // porque antes lo ocultaba en pantallas menores de 768px.
-      this.showDashboard = true; 
+      if (window.innerWidth >= 768) {
+        this.showDashboard = true;
+      } else {
+        this.showDashboard = false;
+      }
     }
   },
   mounted() {
     window.addEventListener('resize', this.checkWidth);
-    this.checkWidth(); // Asegura que se muestre al cargar
+    this.checkWidth(); // Asegura que se muestre u oculte según el ancho al cargar
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkWidth);
   }
 }
 </script>
-
-<style scoped>
-
-</style>

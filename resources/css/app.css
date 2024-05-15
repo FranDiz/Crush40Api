@@ -52,7 +52,8 @@ body{
 }
     
 .content-area {
-    width: 70%; /* SearchComponent toma el resto, el 70% */
+    max-width: 75%; /* SearchComponent toma el resto, el 70% */
+    width: 70%;
       overflow: auto; /* Permite scroll si el contenido excede la altura */
     }
   
