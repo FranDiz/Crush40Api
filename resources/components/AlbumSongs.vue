@@ -10,7 +10,7 @@
         <nav>
           <button v-if="isFavorite(item.id)" @click="deleteFavorites(item.id)">- Favoritos</button>
           <button v-else @click="addFavorites(item.id)">+ Favoritos</button>
-          <button>+ Playlist</button>
+          <button @click="openModal(item.id)">+ Playlist</button>
           <button>
             <a :href="item.external_urls.spotify" target="_blank">Escuchar en Spotify</a>
           </button>
@@ -20,15 +20,19 @@
     <ul v-else class="album__loading">
       <li>Cargando...</li>
     </ul>
+    <PlaylistModal v-if="modalTrackId" :show="showModal" :trackId="modalTrackId" @close="closeModal" />
   </section>
 </template>
 
-
 <script>
 import axios from 'axios';
-import '../css/AlbumSongs.css'
+import PlaylistModal from './PlaylistModal.vue';
+import '../css/AlbumSongs.css';
 
 export default {
+  components: {
+    PlaylistModal
+  },
   props: {
     albumId: {
       type: String,
@@ -40,10 +44,12 @@ export default {
     return {
       product: null,
       favorites: [],
-      user: null  // Añadir el usuario al estado local del componente
+      user: null,
+      showModal: false,
+      modalTrackId: null
     };
   },
-
+  
   computed: {
     songDuration() {
       return function (duration_ms) {
@@ -68,18 +74,13 @@ export default {
       })
       .catch((error) => {
         console.error('Error al cargar los datos del usuario', error);
-        // Adicionalmente puedes manejar errores específicos del estado HTTP si es necesario:
         if (error.response) {
-          // La solicitud fue hecha y el servidor respondió con un código de estado
-          // que cae fuera del rango de 2xx
           console.log(error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
         } else if (error.request) {
-          // La solicitud fue hecha pero no se recibió respuesta
           console.log(error.request);
         } else {
-          // Algo más causó un error en la solicitud
           console.log('Error', error.message);
         }
       });
@@ -103,7 +104,7 @@ export default {
 
     saveSongs() {
       axios.post('/api/spotify/saveAlbumTracks', {
-        albumId: this.albumId  // Usar data en lugar de params para enviar datos en POST
+        albumId: this.albumId
       }).then(response => {
         console.log('Tracks saved to database:', response.data);
       }).catch(error => {
@@ -124,7 +125,7 @@ export default {
           return response.json();
         })
         .then(data => {
-          this.favorites = data
+          this.favorites = data;
           console.log(this.favorites);
         })
         .catch(error => {
@@ -136,35 +137,42 @@ export default {
     },
     addFavorites(trackId) {
       axios.post('/api/favorites/addFavorite', {
-        userId: this.user.id,  // Usando el ID del usuario desde el estado local
+        userId: this.user.id,
         favoriteId: trackId
       }).then(response => {
         console.log('Favorite added!', response.data);
+        this.fetchFavorites(this.user.id);
       }).catch(error => {
         console.error('Error adding favorite:', error);
       });
     },
     deleteFavorites(trackId) {
-    fetch(`/api/favorites/deleteFavorite`, {
+      fetch(`/api/favorites/deleteFavorite`, {
         method: 'DELETE',
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'Content-Type': 'application/json'
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            userId: this.user.id,
-            favoriteId: trackId
+          userId: this.user.id,
+          favoriteId: trackId
         })
-    })
-    .then(response => {
-      this.fetchFavorites(this.user.id);
-    })
-  },
-
-    addPlaylist() {
-      console.log(this.user);
+      })
+      .then(response => {
+        this.fetchFavorites(this.user.id);
+      })
+      .catch(error => {
+        console.error('Error deleting favorite:', error);
+      });
+    },
+    openModal(trackId) {
+      this.modalTrackId = trackId;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.modalTrackId = null;
     }
-
   }
 }
 </script>
