@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Playlists;
 use App\Models\Canciones;
-use App\Models\User; 
+use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -30,10 +30,10 @@ class ApiController extends Controller
             $request->validate([
                 'title' => 'required|string|max:20',
                 'description' => 'nullable|string',
-                'user_id' => 'required|exists:users,id', 
+                'user_id' => 'required|exists:users,id',
             ]);
 
-            $playlist = new Playlists(); 
+            $playlist = new Playlists();
             $playlist->title = $request->input('title');
             $playlist->description = $request->input('description');
             $playlist->user_id = $request->input('user_id');
@@ -49,7 +49,7 @@ class ApiController extends Controller
         try {
             // Obtiene todas las playlists de la base de datos
             $playlists = Playlists::all();
-    
+
             // Devuelve las playlists con un código de estado 200 (OK)
             return response()->json($playlists, 200);
         } catch (\Exception $e) {
@@ -63,32 +63,51 @@ class ApiController extends Controller
         try {
             // Busca la playlist por ID. Si no la encuentra, retorna un error 404.
             $playlist = Playlists::findOrFail($playlistId);
-    
+
             // Si la playlist es encontrada, devuelve los detalles de la playlist con un código de estado 200 (OK)
             return response()->json($playlist, 200);
         } catch (\Exception $e) {
             // En caso de error en la búsqueda, devuelve un mensaje de error con un código de estado 500 (Error interno del servidor)
-         return response()->json(['error' => 'Error en el servidor: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Error en el servidor: ' . $e->getMessage()], 500);
+        }
     }
+    public function getUserPlaylists(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        try {
+            // Verificar que el usuario existe
+            $user = User::findOrFail($userId);
+
+            // Obtener las playlists del usuario
+            $playlists = $user->playlists;
+
+            // Devolver las playlists con un código de estado 200 (OK)
+            return response()->json($playlists, 200);
+        } catch (\Exception $e) {
+            // En caso de error, devolver un mensaje de error con un código de estado 500 (Error interno del servidor)
+            return response()->json(['error' => 'Error en el servidor: ' . $e->getMessage()], 500);
+        }
     }
     public function addSongToPlaylist(Request $request)
     {
-    $playlistId = $request->input('playlistId');
-    $cancionId = $request->input('cancionId');
+        $playlistId = $request->input('playlistId');
+        $cancionId = $request->input('cancionId');
 
-    $playlist = Playlists::find($playlistId);
-    if (!$playlist) {
-        return response()->json(['message' => 'Playlist not found'], 404);
+        $playlist = Playlists::find($playlistId);
+        if (!$playlist) {
+            return response()->json(['message' => 'Playlist not found'], 404);
+        }
+
+        $playlist->canciones()->attach($cancionId);
+
+        return response()->json(['message' => 'Cancion added to playlist']);
     }
 
-    $playlist->canciones()->attach($cancionId);
-
-    return response()->json(['message' => 'Cancion added to playlist']);
-    }
-
-    public function getPlaylistSongs(Request $request){
-            $playlistId = $request->input('playlistId');
-            $playlist = Playlists::with('canciones')->find($playlistId);
+    public function getPlaylistSongs(Request $request)
+    {
+        $playlistId = $request->input('playlistId');
+        $playlist = Playlists::with('canciones')->find($playlistId);
         if (!$playlist) {
             return response()->json(['message' => 'Playlist not found'], 404);
         }
@@ -96,25 +115,24 @@ class ApiController extends Controller
     }
 
 
-    public function removeSongFromPlaylist(Request $request, )
-{
-    $playlistId = $request->input('playlistId');
-    $cancionId = $request->input('cancionId');
+    public function removeSongFromPlaylist(Request $request,)
+    {
+        $playlistId = $request->input('playlistId');
+        $cancionId = $request->input('cancionId');
 
-    // Buscar la playlist por su ID
-    $playlist = Playlists::find($playlistId);
+        // Buscar la playlist por su ID
+        $playlist = Playlists::find($playlistId);
 
-    // Verificar si la playlist existe
-    if (!$playlist) {
-        // Si la playlist no se encuentra, retornar un error 404
-        return response()->json(['message' => 'Playlist not found'], 404);
+        // Verificar si la playlist existe
+        if (!$playlist) {
+            // Si la playlist no se encuentra, retornar un error 404
+            return response()->json(['message' => 'Playlist not found'], 404);
+        }
+
+        // Eliminar la canción específica de la playlist
+        $playlist->canciones()->detach($cancionId);
+
+        // Retornar una respuesta confirmando que la canción fue eliminada
+        return response()->json(['message' => 'Cancion removed from playlist']);
     }
-
-    // Eliminar la canción específica de la playlist
-    $playlist->canciones()->detach($cancionId);
-
-    // Retornar una respuesta confirmando que la canción fue eliminada
-    return response()->json(['message' => 'Cancion removed from playlist']);
-}
-
 }

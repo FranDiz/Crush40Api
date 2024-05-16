@@ -126,7 +126,6 @@ export default {
         })
         .then(data => {
           this.favorites = data;
-          console.log(this.favorites);
         })
         .catch(error => {
           console.error('Error al cargar los favoritos', error);
