@@ -1,7 +1,7 @@
-# Crush40: Tu aplicación musical para descubrir y disfrutar de tus canciones favoritas
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/a89149dc-c56e-4f3d-aab0-77c5952d07f0)# Crush40: Tu aplicación musical para descubrir y disfrutar de tus canciones favoritas
 
 ## Descripción
-Crush40 es una aplicación web completa para los amantes de la música, especialmente aquellos que disfrutan del género de videojuegos. Te permite encontrar y escuchar canciones, crear playlists personalizadas y descubrir nuevas melodías que te encantarán.
+Crush40 es una aplicación web completa para los amantes de la música, Te permite encontrar nuevas canciones, crear playlists personalizadas y descubrir nuevas melodías que te encantarán.
 
 ## Tecnologías Utilizadas
 
@@ -20,16 +20,18 @@ Crush40 es una aplicación web completa para los amantes de la música, especial
 
 ## Capturas de Pantalla
 ### Pantalla de inicio
-![Pantalla de inicio](ruta/a/la/imagen_inicio.png)
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/705fe36c-89f3-4e93-b914-947d651cb7f9)
+
 
 ### Búsqueda de canciones
-![Búsqueda de canciones](ruta/a/la/imagen_busqueda.png)
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/705c25ea-cde1-4a61-a08b-374bd03d9b7b)
+
 
 ### Creación de playlists
-![Creación de playlists](ruta/a/la/imagen_playlists.png)
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/5e2c31fb-0f8e-4569-9c46-2b4f241f87d9)
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/8ebd9859-672a-4980-8557-a7e92df7783d)
 
-### Reproductor de música
-![Reproductor de música](ruta/a/la/imagen_reproductor.png)
+
 
 ## Instrucciones de Instalación y Configuración
 
@@ -70,10 +72,6 @@ Crush40 es una aplicación web completa para los amantes de la música, especial
 La aplicación se despliega en Netlify. Para obtener el enlace, consulta el repositorio del proyecto.
 
 ## Autores y Reconocimientos
-- [Nombre del autor/equipo]
+- Francisco Rodríguez Diz
 
-## Licencia
-- [Nombre de la licencia]
 
-## Reflexiones y Aprendizajes
-(Opcional: Comparte tu experiencia en el desarrollo del proyecto, los desafíos enfrentados y las lecciones aprendidas)
