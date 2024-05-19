@@ -35,7 +35,7 @@ Crush40 es una aplicación web completa para los amantes de la música, Te permi
 
 ## Instrucciones de Instalación y Configuración
 
-### Configuración del servidor (Opcional):
+### Configuración del servidor 
 1. Instalar [XAMPP](https://www.apachefriends.org/download.html).
 2. Crear una base de datos MySQL.
 3. Ejecutar comandos:
