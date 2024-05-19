@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/a89149dc-c56e-4f3d-aab0-77c5952d07f0)# Crush40: Tu aplicación musical para descubrir y disfrutar de tus canciones favoritas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descripción
+Crush40 es una aplicación web completa para los amantes de la música, Te permite encontrar nuevas canciones, crear playlists personalizadas y descubrir nuevas melodías que te encantarán.
 
-## About Laravel
+## Tecnologías Utilizadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Frontend:
+- **Vue.js**: Framework JavaScript para el desarrollo de interfaces web dinámicas.
+- **Vuex**: Librería para la gestión de estado global en aplicaciones Vue.js.
+- **Vue Router**: Router oficial para Vue.js, que permite la navegación entre diferentes vistas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Backend (Opcional):
+- **PHP**: Lenguaje de programación para el desarrollo del servidor.
+- **Laravel**: Framework PHP popular para crear aplicaciones web robustas.
+- **MySQL**: Sistema de gestión de bases de datos relacionales.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Despliegue:
+- **Netlify**: Plataforma de alojamiento web para aplicaciones estáticas y dinámicas.
 
-## Learning Laravel
+## Capturas de Pantalla
+### Pantalla de inicio
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/705fe36c-89f3-4e93-b914-947d651cb7f9)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Búsqueda de canciones
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/705c25ea-cde1-4a61-a08b-374bd03d9b7b)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+### Creación de playlists
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/5e2c31fb-0f8e-4569-9c46-2b4f241f87d9)
+![image](https://github.com/FranDiz/Crush40Api/assets/107588190/8ebd9859-672a-4980-8557-a7e92df7783d)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Instrucciones de Instalación y Configuración
 
-## Contributing
+### Configuración del servidor (Opcional):
+1. Instalar [XAMPP](https://www.apachefriends.org/download.html).
+2. Crear una base de datos MySQL.
+3. Ejecutar comandos:
+    ```bash
+    php artisan migrate
+    php artisan serve
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Configuración del cliente:
+1. Clonar el repositorio del proyecto:
+    ```bash
+    git clone https://github.com/usuario/crush40.git
+    ```
+2. Instalar dependencias:
+    ```bash
+    npm install
+    ```
+3. Ejecutar comando para iniciar el desarrollo local:
+    ```bash
+    npm run dev
+    ```
 
-## Code of Conduct
+## Uso de la Aplicación
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Búsqueda de canciones:
+- Utiliza la barra de búsqueda para encontrar canciones por nombre, artista, género o álbum.
+- Explora las categorías populares para descubrir nuevas canciones.
 
-## Security Vulnerabilities
+### Creación de playlists:
+- Crea playlists personalizadas para organizar tus canciones favoritas.
+- Añade canciones a las playlists desde la búsqueda o desde la página de la canción.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Despliegue
+La aplicación se despliega en Netlify. Para obtener el enlace, consulta el repositorio del proyecto.
 
-## License
+## Autores y Reconocimientos
+- Francisco Rodríguez Diz
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
