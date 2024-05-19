@@ -32,6 +32,8 @@ export default {
     const token = localStorage.getItem('token');
     if (token) {
       this.isLoggedIn = true; // Si hay token, entonces hay un usuario logueado
+    }else{
+      this.isLoggedIn = false;
     }
   },
   methods:{

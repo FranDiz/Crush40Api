@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('usuario');
             $table->text('comentario');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('playlists_id')->references('id')->on('playlists');

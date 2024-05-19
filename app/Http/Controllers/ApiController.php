@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Comentarios;
 
 class ApiController extends Controller
 {
@@ -134,5 +135,20 @@ class ApiController extends Controller
 
         // Retornar una respuesta confirmando que la canción fue eliminada
         return response()->json(['message' => 'Cancion removed from playlist']);
+    }
+    public function playlistComments(Request $request,)
+    {
+        $playlistId = $request->input('playlistId');
+        $playlist = Playlists::find($playlistId);
+
+        if (!$playlist) {
+            return response()->json(['message' => 'Playlist no encontrada'], 404);
+        }
+
+        // Obtener los comentarios asociados a la playlist
+        $comentarios = Comentarios::where('playlists_id', $playlistId)->get();
+
+        // Devolver los comentarios en formato JSON
+        return response()->json($comentarios);
     }
 }

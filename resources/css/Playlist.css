@@ -1,7 +1,7 @@
 .playlist-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:baseline;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -36,4 +36,71 @@
     height: 80px; 
     border-radius: 40px; 
     margin-right: 15px;
+}
+
+.playlist__form {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+
+}
+.playlist__form label {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.playlist__form textarea {
+    width: 60%;
+    height: 70px;
+    background-color:#17012a;
+    padding: 10px;
+    border-radius: 4px;
+}
+.playlist__form button {
+    margin-top: 10px;
+}
+
+.playlist__comments {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+.playlist__comments ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+/* Estilo para cada comentario */
+.playlist__comments li {
+    background-color:#17012a;
+    border-color: #888;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+/* Estilo para el nombre del usuario */
+.playlist__comments li p.usuario {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Estilo para el contenido del comentario */
+.playlist__comments li p.comentario {
+    margin-bottom: 5px;
+}
+
+/* Estilo para la fecha del comentario */
+.playlist__comments li p.fecha {
+    font-size: 12px;
+    color: #888;
 }

@@ -14,9 +14,26 @@
                 <button>
                     <a :href="song.external_urls.spotify" target="_blank" class="playlist__link">Escuchar en Spotify</a>
                 </button>
-                <button v-if="canEditPlaylist" @click="removeSongFromPlaylist(playlist.id, song.id)" class="playlist__remove-btn">Eliminar</button>
+                <button v-if="canEditPlaylist" @click="removeSongFromPlaylist(playlist.id, song.id)"
+                    class="playlist__remove-btn">Eliminar</button>
             </li>
         </ul>
+        <form @submit.prevent="crearComentario" class="playlist__form">
+            <h2 for="comentario">Comentar la playlist:</h2>
+            <textarea id="comentario" v-model="comentario" name="comentario" rows="3" cols="50"></textarea>
+            <button type="submit" @click="createComment">Agregar Comentario</button>
+
+        </form>
+        <section class="playlist__comments">
+            <h2>Comentarios:</h2>
+            <ul>
+                <li v-for="comment in comments" :key="comment.id">
+                    <p>{{ comment.usuario }} dice:</p>
+                    <p>{{ comment.comentario }}</p>
+                    <p>{{ formatDate(comment.created_at) }}</p>
+                </li>
+            </ul>
+        </section>
     </section>
     <section v-else class="playlist__loading">
         Cargando detalles de la playlist...
@@ -38,7 +55,8 @@ export default {
         return {
             playlist: null,
             songs: [],
-            user: null
+            user: null,
+            comments: []
         }
     },
     computed: {
@@ -51,7 +69,8 @@ export default {
         this.getUserDetails();
         this.getPlaylistDetails();
         this.getPlaylistSongs();
-        console.log(this.songs);    
+        this.getComments();
+        console.log(this.songs);
     },
     methods: {
         formatDate(dateString) {
@@ -65,18 +84,18 @@ export default {
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
                 },
             })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Respuesta de autenticación fallida: ' + response.status);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                this.user = data;
-            })
-            .catch((error) => {
-                console.error('Error al cargar los datos del usuario', error);
-            });
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Respuesta de autenticación fallida: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    this.user = data;
+                })
+                .catch((error) => {
+                    console.error('Error al cargar los datos del usuario', error);
+                });
         },
         getPlaylistDetails() {
             axios.get('/api/getPlaylistDetails', {
@@ -142,21 +161,52 @@ export default {
                     cancionId: songId
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al eliminar la canción de la playlist: ' + response.status);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al eliminar la canción de la playlist: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Canción eliminada de la playlist:', data);
+                    // Eliminar la canción de la lista de canciones en el estado local
+                    this.songs = this.songs.filter(song => song.id !== songId);
+                })
+                .catch(error => {
+                    console.error('Error al eliminar la canción de la playlist:', error);
+                });
+        },
+        getComments() {
+            axios.get('/api/playlistComments', {
+                params: {
+                    playlistId: this.playlistId
                 }
-                return response.json();
             })
-            .then(data => {
-                console.log('Canción eliminada de la playlist:', data);
-                // Eliminar la canción de la lista de canciones en el estado local
-                this.songs = this.songs.filter(song => song.id !== songId);
-            })
-            .catch(error => {
-                console.error('Error al eliminar la canción de la playlist:', error);
-            });
-        }
+                .then(response => {
+                    this.comments = response.data;
+                })
+                .catch(error => {
+                    console.error('Error al cargar los comentarios de la playlist:', error);
+                });
+        },
+        createComment() {
+            axios.post('/api/createComment', {
+            usuario: this.user.name, 
+            comentario: this.comentario,
+            user_id: this.user.id,
+            playlists_id: this.playlist.id
+        })
+        .then(response => {
+            console.log('Comentario creado:', response.data);
+            // Actualizar la lista de comentarios después de crear uno nuevo
+            this.getComments();
+            // Limpiar el campo de comentario después de enviar el comentario
+            this.comentario = '';
+        })
+        .catch(error => {
+            console.error('Error al crear el comentario:', error);
+        });
+    }
     }
 }
 </script>

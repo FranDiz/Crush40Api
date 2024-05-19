@@ -47,6 +47,7 @@ Route::get('/getPlaylistDetails',[ApiController::class, 'getPlaylistDetails']);
 Route::get('/getUserPlaylists',[ApiController::class, 'getUserPlaylists']);
 Route::post('/addSongToPlaylist', [ApiController::class, 'addSongToPlaylist']);
 Route::delete('/removeSongFromPlaylist',[ApiController::class, 'removeSongFromPlaylist']);
+Route::get('/playlistComments',[ApiController::class, 'playlistComments']);
 
 //Rutas de autenticación
 Route::middleware(['auth:sanctum'])->group(function(){
@@ -57,3 +58,4 @@ Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user'])
 Route::post('/login', [AuthController::class, 'login',])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/createComment', [UsersController::class, 'createComment'])->name('comentarios.create');

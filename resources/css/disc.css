@@ -1,0 +1,41 @@
+.box,
+.elem {
+
+}
+
+.box {
+	  margin:20px;
+	  cursor:pointer;
+}
+
+.elem {
+	  width:60px;
+	  height:60px;
+	  border-style:solid;
+	  border-radius:50%;
+	  border-width:60px;
+	  border-color:#983b3b #98983b #3b9859 #3b5998;
+	  -webkit-animation-name:rotate;
+	  -webkit-animation-duration:2s;
+	  -webkit-animation-iteration-count:infinite;
+	  -webkit-animation-timing-function:linear;
+}
+
+.box:hover {
+	  -webkit-animation-name:spinx;
+	  -webkit-animation-duration:4s;
+	  -webkit-transform-origin:50% 50%;
+	  -webkit-animation-iteration-count:infinite;
+	  -webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes rotate {
+	  from { 	-webkit-transform:rotate(0deg); }
+  to { -webkit-transform:rotate(360deg); }
+}
+
+@-webkit-keyframes spinx {
+	  from { 	-webkit-transform:rotatex(0deg); }
+  to { -webkit-transform:rotatex(360deg); }
+}
+

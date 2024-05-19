@@ -63,16 +63,18 @@ body{
         flex-direction: column; /* Cambiar la orientación en pantallas pequeñas */
         display: flex;
         height: 100vh; /* Ocupar toda la altura visible */
-        justify-content: center;
+        justify-content:flex-start;
       }
     
       .sidebar {
         width: 100%; /* Dashboard ocupa toda la anchura */
         min-width: 0; /* Elimina el ancho mínimo */
+        max-width: 100%;
       }
     
       .content-area {
         width: 100%; /* SearchComponent también ocupa toda la anchura */
+        max-width: 100%;
       }
     }
     
