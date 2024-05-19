@@ -56,12 +56,14 @@ export default {
         switch (this.searchType) {
           case 'track':
             this.results = response.data.tracks.items;
+            console.log(this.results);
             break;
           case 'artist':
             this.results = response.data.artists.items;
             break;
           case 'album':
             this.results = response.data.albums.items;
+            console.log(this.results);
             break;
           default:
             this.results = [];

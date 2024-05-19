@@ -46,7 +46,6 @@ export default {
                     password: this.password,
                 })
                 .then((response)=>{
-                    alert(response.data.token)
                     localStorage.setItem('token', response.data.token)
                     this.$router.push({name: 'Profile'})
                 })

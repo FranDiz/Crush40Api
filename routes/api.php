@@ -45,7 +45,7 @@ Route::get('/getPlaylists', [ApiController::class, 'getPlaylists']);
 Route::get('/getPlaylistSongs',[ApiController::class, 'getPlaylistSongs']);
 Route::get('/getPlaylistDetails',[ApiController::class, 'getPlaylistDetails']);
 Route::get('/getUserPlaylists',[ApiController::class, 'getUserPlaylists']);
-Route::post('/addSongToPlaylist',[ApiController::class, 'addSongToPlaylist']);
+Route::post('/addSongToPlaylist', [ApiController::class, 'addSongToPlaylist']);
 Route::delete('/removeSongFromPlaylist',[ApiController::class, 'removeSongFromPlaylist']);
 
 //Rutas de autenticación

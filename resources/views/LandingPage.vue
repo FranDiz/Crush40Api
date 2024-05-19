@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="container">
     <aside class="sidebar">
       <Dashboard/>
     </aside>

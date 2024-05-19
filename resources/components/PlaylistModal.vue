@@ -3,14 +3,16 @@
     <div class="playlist-modal">
       <h3 class="playlist-modal__title">Agregar a Playlist</h3>
       <ul class="playlist-modal__list">
-        <li @click="addSongToPlaylist(playlist.id, this.trackId)" v-for="playlist in playlists" :key="playlist.id" class="playlist-modal__item">
+        <li @click="addSongToPlaylist(playlist.id, trackId)" v-for="playlist in playlists" :key="playlist.id" class="playlist-modal__item">
           {{ playlist.title }}
         </li>
       </ul>
+      <p v-if="errorMessage" class="playlist-modal__error">{{ errorMessage }}</p>
       <button class="playlist-modal__close-btn" @click="closeModal">Cerrar</button>
     </div>
   </div>
 </template>
+
 
 <script>
 import '../css/PlaylistModal.css';
@@ -28,13 +30,12 @@ export default {
   data() {
     return {
       user: null,
-      playlists: []
+      playlists: [],
+      errorMessage: null
     }
   },
   mounted() {
     this.getUser();
-    
-
   },
   methods: {
     getUser() {
@@ -67,7 +68,6 @@ export default {
           user_id: userId
         }
       }).then(response => {
-        // Aquí puedes manejar la respuesta, por ejemplo, actualizar el estado en React
         this.playlists = response.data;
         console.log(this.playlists);
       }).catch(error => {
@@ -75,26 +75,31 @@ export default {
       });
     },
     closeModal() {
-    this.$emit('close');
-  },
+      this.$emit('close');
+    },
     addSongToPlaylist(playlistId, trackId) {
-      axios.post('/api/addSongToPlaylist', {
-        params: {
-          playlistId: playlistId,
-          cancionId: trackId
-        }
-      })  
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al agregar la canción a la playlist: ' + response.status);
-        }
-        console.log(response.data);
+      axios.post(`http://127.0.0.1:8000/api/addSongToPlaylist`, {
+        playlistId: playlistId,
+        cancionId: trackId
       })
+      .then(response => {
+        console.log(response.data);
+        this.errorMessage = null;  // Resetea el mensaje de error si la solicitud es exitosa
+        this.closeModal();  // Cierra el modal después de añadir la canción
+      })
+      .catch(error => {
+        console.error('Error al agregar la canción a la playlist:', error);
+        if (error.response && error.response.status === 500) {
+          this.errorMessage = 'La canción ya está añadida a la playlist';
+        } else {
+          this.errorMessage = 'Error al agregar la canción a la playlist';
+        }
+      });
     }
-},
-  
+  }
 }
 </script>
+
 
 <style scoped>
 .modal-overlay {
@@ -107,5 +112,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.playlist-modal__error {
+  color: red;
+  margin-top: 10px;
 }
 </style>

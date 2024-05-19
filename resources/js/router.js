@@ -7,8 +7,9 @@ import AlbumPage from '../views/AlbumPage.vue'
 import PlaylistsPage from '../views/PlaylistsPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import PlaylistPage from '../views/PlaylistPage.vue'
+import HomePage from '../views/HomePage.vue'
 const routes = [
-    {path: '/', component: LandingPage },
+    {path: '/search', component: LandingPage },
     {path:'/album/:id', component:AlbumPage},
     {path: '/categories', component: CategoryPage} ,
     {path: '/register', component: RegisterPage},
@@ -16,6 +17,7 @@ const routes = [
     {path:'/profile', name:'Profile', component: ProfilePage, meta: {requiredAuth: true}},
     {path:'/playlists', name:'Playlists', component: PlaylistsPage, props: true},
     {path: '/playlist/:id', component: PlaylistPage, props: true},
+    {path: '/', component: HomePage}
 ]
 const router = createRouter({
     history: createWebHistory(),

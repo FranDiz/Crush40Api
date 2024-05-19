@@ -114,7 +114,8 @@ export default {
         this.favorites = this.favorites.filter(song => song.id !== songId);
     })
     .catch(error => console.error('Error al eliminar el favorito', error));
-}
+},
+    
     },
     computed: {
     songDuration() {
