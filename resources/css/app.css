@@ -1,9 +1,23 @@
+:root {
+  --text-color: black;
+  background-color: var(--background-color);
+  --box-shadow-color:  0 0 1px #00d5ff,
+  0 0 3px #00d5ff,
+  inset 0 0 1px #00d5ff,
+  inset 0 0 3px #00d5ff;
+}
+
+[data-theme='dark'] {
+  --background-color: rgb(12, 11, 73);
+  --text-color: white;
+}
+
+[data-theme=''] {
+  --background-color: rgb(62, 41, 95);
+  --text-color: rgb(0, 0, 0);
+}
+
 body{
-    background: rgb(9,0,42);
-    background: -moz-linear-gradient(90deg, rgba(9,0,42,1) 20%, rgba(16,0,40,1) 44%);
-    background: -webkit-linear-gradient(90deg, rgba(9,0,42,1) 20%, rgba(16,0,40,1) 44%);
-    background: linear-gradient(90deg, rgba(9,0,42,1) 20%, rgba(16,0,40,1) 44%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#09002a",endColorstr="#100028",GradientType=1);
       font-family: var(--fuente-principal);
       line-height: 1.6;
   }
@@ -38,6 +52,14 @@ body{
       transition: border 0.3s, box-shadow 0.3s;
       text-decoration: none;
     }
+    button:hover {
+      border: 2px solid #00d5ff;
+      box-shadow: 
+          0 0 10px #00d5ff,
+          0 0 20px #00d5ff,
+          inset 0 0 10px #00d5ff,
+          inset 0 0 20px #00d5ff;
+  }
     /* Estilos globales o en App.vue */
   main {
       display: flex;
@@ -48,11 +70,10 @@ body{
     
 .sidebar {
     width: 30%; /* Dashboard toma el 30% del ancho */
-    min-width: 240px; /* Mínimo ancho del Dashboard */
 }
+  
     
 .content-area {
-    max-width: 75%; /* SearchComponent toma el resto, el 70% */
     width: 70%;
       overflow: auto; /* Permite scroll si el contenido excede la altura */
     }
@@ -62,19 +83,25 @@ body{
       main {
         flex-direction: column; /* Cambiar la orientación en pantallas pequeñas */
         display: flex;
-        height: 100vh; /* Ocupar toda la altura visible */
+        width: 100%; /* Dashboard toma el 100% del ancho */
         justify-content:flex-start;
+      }
+      body{
+        width: 100%; /* Dashboard toma el 100% del ancho */
+        
+        height: 100vh;
+      }
+      .app{
+        width: 100%; /* Dashboard toma el 100% del ancho */
+        height: 100vh;
       }
     
       .sidebar {
-        width: 100%; /* Dashboard ocupa toda la anchura */
-        min-width: 0; /* Elimina el ancho mínimo */
-        max-width: 100%;
+        width: 85%; /* Dashboard toma el 100% del ancho */
       }
     
       .content-area {
-        width: 100%; /* SearchComponent también ocupa toda la anchura */
-        max-width: 100%;
+        width: 95%; /* SearchComponent ocupa toda la anchura */
       }
     }
     

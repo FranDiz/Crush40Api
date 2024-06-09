@@ -13,15 +13,16 @@
         <span v-if="passwordError" class="error-message">La contraseña debe tener al menos 8 caracteres</span>
         <button type="submit" class="form___submit">Entrar</button>
         
-
+        <RouterLink to="/register" class="form___link">¿Eres nuevo? Registrate ahora</RouterLink>
         <div class="form___links">
-            <a href="#" class="form___link">¿Eres nuevo? Registrate ahora</a>
+            <a href="#" class="form___link"></a>
         </div>
     </form>
 </template>
 
 
 <script>
+import { RouterLink } from 'vue-router';
 import '../css/Form.css';
 
 export default {

@@ -6,22 +6,25 @@
       <template v-if="!isLoggedIn">
         <RouterLink to="/login" class="button">Entrar</RouterLink>
         <RouterLink to="/register" class="button">Registrarse</RouterLink>
+        <DarkModeToggle/>
       </template>
       <!-- Mostrar botones de perfil/cerrar sesión si hay usuario logueado -->
       <template v-else>
         <RouterLink to="/profile" class="button">Perfil</RouterLink>
         <button @click="logout" class="button">Cerrar sesión</button>
+        <DarkModeToggle/>
       </template>
     </div>
   </header>
 </template>
 
 <script>
+import DarkModeToggle from './DarkModeToggle.vue';
 import '../css/Header.css';
 import { RouterLink } from 'vue-router';
 
 export default {
-  components: { RouterLink },
+  components: { RouterLink, DarkModeToggle },
   data() {
     return {
       isLoggedIn: false, // Inicialmente no hay usuario logueado

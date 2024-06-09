@@ -1,7 +1,7 @@
 <template>
   <nav class="dashboard" v-show="showDashboard">
     <h1 v-if="user" class="dashboard__welcome">Bienvenido, {{ user.name }}</h1>
-    <h1 v-else class="dashboard__welcome">Sesion de invitado</h1>
+    <h1 v-else class="dashboard__welcome">¡Registrate!</h1>
     <ul class="dashboard__links">
       <router-link to="/search" class="dashboard__link">Inicio</router-link>
       <router-link to="/categories" class="dashboard__link">Explorar por categorías</router-link>
@@ -10,7 +10,7 @@
       <router-link to="/" class="dashboard__link">¿Qué es Crush40?</router-link>
     </ul>
   </nav>
-  <button class="toggle-button" @click="toggleDashboard">Mostrar/Ocultar Dashboard</button>
+  <button class="dashboard___toggle-button" @click="toggleDashboard">Mostrar/Ocultar Dashboard</button>
 </template>
 
 <script>

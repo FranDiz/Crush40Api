@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import '../css/ContactForm.css';
 export default {
     data() {
         return {
@@ -105,71 +106,5 @@ export default {
 
 
 <style scoped>
-.contact {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items:baseline;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.contact h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.contact p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.contact-form .form-group {
-    margin-bottom: 20px;
-}
-
-.contact-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #17012a;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff; /* Cambia el color del texto a blanco */
-}
-
-.contact-form textarea {
-    resize: vertical; /* Permitir la redimensión vertical */
-}
-
-.contact-form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: #ff0000; /* Color rojo para los mensajes de error */
-    font-size: 14px;
-}
 </style>

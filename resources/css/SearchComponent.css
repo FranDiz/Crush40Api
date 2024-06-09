@@ -106,7 +106,7 @@
   /* Media Query for smaller screens */
   @media (max-width: 768px) {
     .search-results {
-      grid-template-columns: repeat(4, 1fr); /* Switch to 2 columns on smaller screens */
+      grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns on smaller screens */
     }
     .search-form {
       width: 100%;

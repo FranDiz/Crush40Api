@@ -9,18 +9,13 @@
   justify-content: flex-start;
   border-radius: 0.5em;
   border: 2px solid #00d5ff;
-  box-shadow: 
-    0 0 1px #00d5ff,
-    0 0 3px #00d5ff,
-    inset 0 0 1px #00d5ff,
-    inset 0 0 3px #00d5ff;
+  box-shadow: var(--box-shadow-color);
   transition: 1s;
   color: #ccc;
 }
 
 /* Modificador para hover en el bloque dashboard */
 .dashboard:hover {
-  background-color: #17012a;
   border: 4px solid #00d5ff;
   box-shadow: 
     0 0 10px #00d5ff,
@@ -28,6 +23,7 @@
     inset 0 0 10px #00d5ff,
     inset 0 0 20px #00d5ff;
 }
+
 
 /* Elemento de bienvenida dentro del dashboard */
 .dashboard__welcome {
@@ -56,6 +52,11 @@
   margin-bottom: 0.5em;
   text-decoration: none;
 }
+.dashboard__link:hover {
+  background-color: rgba(0, 204, 255, 0.1); /* Añade un fondo semitransparente */
+  padding: 0.2em; /* Ajusta el relleno para el fondo */
+  border-radius: 4px; /* Añade bordes redondeados */
+}
 
 /* Elemento de entrada para la búsqueda de playlist en el dashboard */
 .dashboard__input-playlist {
@@ -65,7 +66,6 @@
   margin-bottom: 1em;
   border: 4px solid #ccc;
   border-radius: 0.25em;
-  background: linear-gradient(#2c003b, #23012f);
   cursor: pointer;
   border-color: #12fcff;
   box-shadow: 
@@ -84,7 +84,6 @@
 
 /* Botón para mostrar el dashboard */
 .show-dashboard {
-  background-color: #250045;
   border: 2px solid #12fcff;
   color: white;
   padding: 5px;
@@ -111,11 +110,12 @@
 @media (max-width: 768px) {
   /* Establecer la dirección del flex a columna para evitar apretujamiento */
   .dashboard {
-    flex-direction: row;
-    justify-content: flex-start; /* Alinear al principio */
-    align-items: center; /* Centrar elementos horizontalmente */
-    padding: 1em; /* Agregar algo de relleno para no tocar los bordes */
-    height:60%; /* Altura automática para contener todos los elementos */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+    height: auto; /* Altura automática para contener todos los elementos */
     max-height: none; /* Eliminar max-height para permitir crecimiento */
   }
 
@@ -123,38 +123,23 @@
     font-size: 1.5em;  /* Reducir el tamaño del texto */
   }
 
-  .dashboard__links {
-    flex-direction: row; /* Poner enlaces uno debajo del otro */
-    justify-content: center;
-    align-items:center;
-    margin: 0; /* Restablecer márgenes */
-    padding: 0.5em; /* Espaciado interior para respirabilidad */
-  }
+    .dashboard__links {
+      flex-direction: column; /* Poner enlaces uno debajo del otro */
+      justify-content: center;
+      align-items: center;
+      margin: 0; /* Restablecer márgenes */
+      padding: 0.5em; /* Espaciado interior para respirabilidad */
+      width: 100%; /* Asegurar que no sobresalga */
+    }
 
   .dashboard__link {
-    font-size: 0.9em;  /* Reducir el tamaño del texto */
-    margin: 0.5em;
+    font-size: 1em;  /* Reducir el tamaño del texto */
+    margin: 0.5em 0;
   }
 
   .dashboard__input-playlist {
     order: -1; /* Colocar el input de búsqueda arriba de los enlaces */
     margin-bottom: 1em; /* Añadir margen inferior para separar del siguiente elemento */
-    width: 80%;
-    padding-right:0.5em;
+    width: 100%; /* Ajustar ancho al 100% */
   }
-
-  /* Si decides mantener la sección desplazable en la vista móvil, ajusta aquí */
-  .dashboard__scroll-section {
-    /* Estilos para ajustar la sección desplazable si se decide mostrar */
-  }
-}
-
-.toggle-button {
-  background-color: #250045;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
 }

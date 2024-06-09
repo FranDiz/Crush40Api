@@ -123,7 +123,6 @@ export default {
     0 0 3px #00d5ff,
     inset 0 0 1px #00d5ff,
     inset 0 0 3px #00d5ff;
-  background-color: #170528;
   color: #ccc;
   overflow: hidden;
 }
